@@ -5,11 +5,13 @@ const App = () => {
   const [answered, setAnswered] = useState(false);
   const [answer, setAnswer] = useState(null);
   const [fin, setFin] = useState(false);
+
   const [btnState, setbtnState] = useState(false);
   const [total, setTotal] = useState(null);
 
   
 // スタートボタン押したときの処理
+
   const startGame = () => {
     // ランダムな数字の配列を生成する関数
     const newNumbers = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10) + 1);
@@ -89,7 +91,9 @@ const App = () => {
       );
     }else if (answered == false && fin == false && btnState == true) {
       return (
+
         <button class="text-white bg-teal-600 font-bold uppercase block text-lg md:text-xl px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
+
           >
           Start
         </button>
@@ -97,21 +101,24 @@ const App = () => {
     }
     else if (answered == false && fin == false) {
       return (
+
         <button class="bg-teal-500 text-white active:bg-teal-600 font-bold uppercase block text-lg md:text-xl px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
+
           onClick={startGame}>
           Start
         </button>
       );
     }else {
       return(
+
         <button class="bg-teal-500 text-white active:bg-teal-600 font-bold uppercase block text-lg md:text-xl px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"
+
           onClick={reset}>
           Continue
         </button>
       );
     }
   }
-
 
   return (
     <div className="conteiner flex justify-center flex-col h-screen">
@@ -120,8 +127,10 @@ const App = () => {
           フラッシュ暗算
         </h1>
         <form onSubmit={startAnswer}>
+
           <div className="md:h-60 md:w-60 h-40 w-40 shadow-[5px_5px_49px_0px_rgba(49,151,149,0.5)] rounded-md my-16 mx-auto flex justify-center items-center">
             {display()}
+
           </div>
           <div className="flex justify-center mt-10">
             {
