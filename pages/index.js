@@ -5,29 +5,45 @@ const App = () => {
   const [answered, setAnswered] = useState(false);
   const [answer, setAnswer] = useState(null);
   const [fin, setFin] = useState(false);
-
   const [btnState, setbtnState] = useState(false);
   const [total, setTotal] = useState(null);
 
-  
-// スタートボタン押したときの処理
 
-  const startGame = () => {
-    // ランダムな数字の配列を生成する関数
+  const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  async function startGame() {
     const newNumbers = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10) + 1);
-      setNumbers(newNumbers);
-    // ひとつづつ二秒間隔で表示する関数
-    let i = 0;
+    setNumbers(newNumbers);
     setbtnState(true);
-    const timerId = setInterval(() => {
+
+    for (let i = 0; i < newNumbers.length + 1; i++) {
+      await wait(1000); // 2秒待機する
       setCurrentNumber(newNumbers[i]);
-      i++;
-      if (i > newNumbers.length + 1) {
-        clearInterval(timerId);
-        setAnswered(true);
-      }
-    }, 2000);
+      console.log(newNumbers[i]);
+    }
+
+    setAnswered(true);
   }
+
+
+// // スタートボタン押したときの処理
+//   async function startGame() {
+//     // ランダムな数字の配列を生成する関数
+//     const newNumbers = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10) + 1);
+//     setNumbers(newNumbers);
+//     // ひとつづつ二秒間隔で表示する関数
+//     let i = 0;
+//     setbtnState(true);
+
+//     const timerId = setInterval(() => {
+//       setCurrentNumber(newNumbers[i]);
+//       i++;
+//       if (i > newNumbers.length + 1) {
+//         clearInterval(timerId);
+//         setAnswered(true);
+//       }
+//     }, 2000);
+//   }
 
   // フォーム部分の処理
   const handleChange = (event) => {
@@ -127,10 +143,8 @@ const App = () => {
           フラッシュ暗算
         </h1>
         <form onSubmit={startAnswer}>
-
           <div className="md:h-60 md:w-60 h-40 w-40 shadow-[5px_5px_49px_0px_rgba(49,151,149,0.5)] rounded-md my-16 mx-auto flex justify-center items-center">
             {display()}
-
           </div>
           <div className="flex justify-center mt-10">
             {
